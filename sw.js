@@ -1,5 +1,5 @@
 // Service worker: keeps the page available offline. Data (/api/) is handled by the page itself.
-const CACHE = 'trip-wallet-v2';
+const CACHE = 'trip-wallet-v3';
 // Paths are relative to where the app lives, so it works at the site root and under a sub-path (GitHub Pages).
 const SHELL = ['./', 'manifest.webmanifest', 'icon.svg', 'icon-512.png', 'apple-touch-icon.png'].map(p => new URL(p, self.registration.scope).href);
 
@@ -9,7 +9,7 @@ self.addEventListener('install', event => {
     // Cache what we can; a file that fails (e.g. login expired) must not block installation.
     await Promise.all(SHELL.map(async path => {
       try {
-        const r = await fetch(path, { credentials: 'same-origin' });
+        const r = await fetch(path, { credentials: 'same-origin', cache: 'no-cache' });
         if (r.ok) await cache.put(path, r);
       } catch {}
     }));
@@ -33,7 +33,10 @@ self.addEventListener('fetch', event => {
   // or when a weak connection takes longer than 4 seconds.
   event.respondWith((async () => {
     const cached = await caches.match(key);
-    const network = fetch(req).then(r => {
+    // cache: 'no-cache' asks the host whether the file changed instead of trusting the browser's
+    // copy (GitHub Pages lets browsers keep files for 10 minutes), so updates show up right away.
+    const fresh = req.mode === 'navigate' ? fetch(req.url, { credentials: 'same-origin', cache: 'no-cache' }) : fetch(req, { cache: 'no-cache' });
+    const network = fresh.then(r => {
       if (r.ok) {
         const copy = r.clone();
         event.waitUntil(caches.open(CACHE).then(c => c.put(key, copy)));
