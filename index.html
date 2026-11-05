@@ -1,4 +1,4 @@
-<!doctype html><html lang="he" dir="rtl" data-mode="local"><meta charset="utf-8"><meta name="app-build" content="00e8ce47ff2f"><meta name="viewport" content="width=device-width,initial-scale=1"><title>המסע שלנו | הוצאות הטיול</title><meta name="theme-color" content="#191b45"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="המסע שלנו"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"><style>
+<!doctype html><html lang="he" dir="rtl" data-mode="local"><meta charset="utf-8"><meta name="app-build" content="6b1159154782"><meta name="viewport" content="width=device-width,initial-scale=1"><title>המסע שלנו | הוצאות הטיול</title><meta name="theme-color" content="#191b45"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="המסע שלנו"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"><style>
 /* Night-market band on top, calm cards below. Indigo + mango; jade for "owed to you". */
 :root{--font:"Rubik",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--bg:#f3f4f9;--surface:#fff;--surface-2:#eff0f7;--ink:#171a35;--muted:#6a6f90;--line:#e3e5ef;--brand:#3d35a8;--brand-ink:#fff;--accent:#ffb547;--accent-ink:#2b1d00;--good:#0c9a72;--bad:#d4475d;--soft:#ecebfd;--soft-ink:#3d35a8;--warn-bg:#fff4dc;--warn-ink:#6f4b0c;--band-1:#191b45;--band-2:#4a39ad;--on-band:#fff;--on-band-muted:#cdcaf5;--glass:#ffffff17;--glass-line:#ffffff2b;--shadow:0 1px 2px #1a1d4012,0 10px 28px #1a1d4014;--radius:22px}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d0f21;--surface:#171a34;--surface-2:#20244a;--ink:#eceeff;--muted:#9fa4c8;--line:#2a2e57;--brand:#8f85ff;--brand-ink:#0d0f21;--soft:#252957;--soft-ink:#cfcaff;--warn-bg:#352a12;--warn-ink:#ffd690;--band-1:#111231;--band-2:#2e2484;--shadow:0 1px 2px #0007,0 10px 28px #0006;--good:#3fd3a3;--bad:#ff7d90;color-scheme:dark}}
@@ -38,6 +38,8 @@ header{display:flex;justify-content:space-between;align-items:center;gap:12px;pa
 #budgetText{font-weight:500;margin-bottom:2px}
 
 /* weekly limit */
+.banner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px;padding:14px 18px;border-radius:var(--radius);background:var(--warn-bg);color:var(--warn-ink)}
+.banner b{display:block}.banner small{display:block;color:inherit;opacity:.85;line-height:1.5;margin-top:2px;overflow-wrap:anywhere}.banner button{background:var(--accent);color:var(--accent-ink);font-weight:600}
 .week{margin-bottom:14px}
 .week-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .week-range{font-weight:600;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate;text-align:right}
@@ -72,6 +74,9 @@ header{display:flex;justify-content:space-between;align-items:center;gap:12px;pa
 .stay-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px 10px}.stay-fields small{grid-column:1/-1}
 .limit-total{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
 #alertDialog{max-width:440px}#alertText{margin:0;font-size:16px;line-height:1.7}
+.japan{margin-top:14px;padding:12px 14px;border-radius:14px;background:var(--soft)}.japan small{display:block;margin-top:6px;font-size:12px}.japan.warn .part-bar i{background:var(--accent)}.japan.over .part-bar i{background:var(--bad)}
+.week-toggle{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;min-height:42px;margin-top:12px;background:var(--surface-2);color:var(--ink);font-size:14px}
+.week-toggle svg{transition:transform .2s}.week-toggle.open svg{transform:rotate(180deg)}
 .week-cta{width:100%;margin-top:14px;background:var(--soft);color:var(--soft-ink)}
 fieldset.cats{min-width:0;margin:0;padding:0;border:0}fieldset.cats legend{padding:0;margin-bottom:8px;font-size:13px;font-weight:500;color:var(--muted)}
 .cat-toggles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
@@ -165,18 +170,23 @@ dialog{width:100%;max-width:100%;margin:auto 0 0;border-radius:26px 26px 0 0;pad
 .formgrid{gap:12px 10px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-</style><div class="top"><header><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5h14a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7.5Z"/><path d="M4 7.5l11-3.2a1.5 1.5 0 0 1 2 1.4v1.8"/><circle cx="16" cy="13.8" r="1.2" fill="currentColor"/></svg></span><div>המסע שלנו<small>יפתח ואסיה · 2026—2027</small></div></div><div class="head-side"><div id="sync">מתחבר…</div><button class="menu-btn" onclick="openData()" aria-label="נתונים והגדרות" title="נתונים והגדרות">⋯</button></div></header><div class="hero-wrap"><div class="hero"><small>פחות לחשב. יותר לטייל.</small><h1>כל המסע, בשקלים.</h1><p>התמונה המלאה של ההוצאות שלכם, בכל מקום בדרך.</p><div class="hero-actions"><button class="add-main" onclick="openExpense()">＋ הוצאה חדשה</button></div></div><div class="card big"><small>שולם עד עכשיו · החלק של יפתח</small><div class="value" id="total">—</div><div class="progress"><i id="progress"></i></div><div id="budgetText"></div><small>מתוך תקציב אישי של 50,000 ₪ · הכנות וטיול</small></div></div></div><main><section class="card week" id="week" aria-labelledby="weekLabel"><div class="week-head"><div><small id="weekLabel">תקציב שבועי</small><div class="week-range" id="weekRange"></div></div><div class="week-nav"><button type="button" class="icon-btn" id="weekPrev" onclick="moveWeek(-1)" aria-label="שבוע קודם">→</button><button type="button" class="icon-btn" id="weekNext" onclick="moveWeek(1)" aria-label="שבוע הבא">←</button><button type="button" class="icon-btn" onclick="openLimit()" aria-label="הגדרת התקציב השבועי"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button></div></div><div class="week-main"><div class="value" id="weekSpent">—</div><small id="weekOf"></small></div><small class="week-adjust" id="weekAdjust" hidden></small><div class="week-bar" id="weekBar" role="progressbar" aria-labelledby="weekLabel" aria-valuemin="0"><i id="weekFill"></i><span class="pace" id="weekPace" title="איפה כדאי להיות עד היום" hidden></span></div><div class="week-text"><b id="weekLeft"></b> <small id="weekSub"></small></div><div class="week-alert" id="weekAlert" role="status" hidden></div><div class="week-parts" id="weekParts" hidden></div><p class="week-moves" id="weekMoves" hidden></p><p class="week-verdict" id="weekVerdict" hidden></p><div class="week-days"><div class="wd-bars" id="wdBars"></div><div class="wd-labels" id="wdLabels"></div></div><p class="week-running" id="weekRunning" hidden></p><p class="week-cushion" id="weekCushion" hidden></p><button type="button" class="week-cta" id="weekCta" onclick="openLimit()">הגדרת תקציב שבועי</button></section><div class="cards"><div class="card"><small>במהלך הטיול</small><div class="value" id="trip">—</div><small id="prep"></small></div><div class="card"><small>היום · החלק של יפתח</small><div class="value" id="today">—</div><small id="planned"></small></div><div class="card"><small>החודש · החלק של יפתח</small><div class="value" id="monthTotal">—</div><small id="monthLabel"></small></div></div><div class="balance" id="balance"><div><small>התחשבנות עם אסיה · כל ההוצאות ששולמו</small><div class="value" id="balanceValue">—</div><small id="balanceText"></small></div><div class="balance-actions"><button type="button" class="secondary" id="balanceDetails" onclick="showBalanceItems()">מה נכלל בחישוב?</button><button type="button" onclick="openSettle()">⇄ רישום העברה ביניכם</button></div></div><div class="quick" aria-label="הוספה מהירה"><small>מה מוסיפים היום?</small><button onclick="quickExpense('אוכל וקפה','ארוחה')">＋ אוכל</button><button onclick="quickExpense('תחבורה','נסיעת Grab')">＋ גראב</button><button onclick="quickExpense('לינה','לינה')">＋ לינה</button></div><div class="notice" id="notice"></div><div class="toolbar"><label class="searchbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="search" type="search" placeholder="חיפוש הוצאה" aria-label="חיפוש הוצאות" oninput="render()"></label><button class="filter-btn" id="filterBtn" onclick="openFilters()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>סינון<span id="filterCount" hidden></span></button><input type="file" id="importFile" accept=".json,application/json" hidden onchange="importData(this.files[0]);this.value=''"></div><div class="chips" id="chips"></div><div class="layout"><section class="panel"><div class="panel-head"><h2>יומן הוצאות</h2><small id="count"></small></div><div class="filter-summary"><span id="filteredTotal"></span><span>הסיכומים העליונים מציגים את כל ההוצאות</span></div><div class="table-wrap"><table class="rows"><thead><tr><th>הוצאה</th><th class="hideMobile">מדינה / שלב</th><th>החלק שלי ₪</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></section><aside><section class="panel"><h2>לאן הכסף הולך?</h2><small>שולם · החלק של יפתח · לפי המסננים</small><div class="tabs"><button onclick="group='category';render()" class="secondary">קטגוריה</button><button onclick="group='country';render()" class="secondary">מדינה</button><button onclick="group='date';render()" class="secondary">יום</button><button onclick="group='month';render()" class="secondary">חודש</button></div><div class="bars" id="bars"></div></section><p class="muted">החזר נרשם בסכום שלילי. משיכת מזומן אינה הוצאה.</p></aside></div><div class="footer">הנתונים שמורים רק בטלפון הזה. מומלץ ללחוץ מדי פעם על "גיבוי לקובץ".</div></main><dialog id="editor"><form id="expenseForm"><h2 id="formTitle">הוצאה חדשה</h2><div class="formgrid"><label class="wide">תיאור<input name="description" required maxlength="200" placeholder="למשל: ארוחת ערב בבנגקוק"></label><label>סכום כולל לתשלום<input name="amount" type="number" step="any" inputmode="decimal" placeholder="שלילי להחזר"></label><label>מטבע<select name="currency"><option>THB</option><option>ILS</option><option>USD</option><option>JPY</option></select></label><label>תאריך תשלום<input name="date" type="date"></label><label class="wide">חלוקה<select name="share" aria-label="חלוקת ההוצאה" hidden><option value="0.5">חצי־חצי · 50% לכל אחד</option><option value="1" selected>של יפתח · 100%</option><option value="0">של אסיה · 0% ליפתח</option></select><div class="split"><button type="button" data-share="1" onclick="setShare(1)">רק שלי</button><button type="button" data-share="0.5" onclick="setShare(.5)">חצי־חצי</button><button type="button" data-share="0" onclick="setShare(0)">רק אסיה</button></div></label><label class="wide">מי שילם?<select name="paidBy" aria-label="מי שילם" hidden><option>יפתח</option><option>אסיה</option><option>כל אחד</option></select><div class="split"><button type="button" data-payer="יפתח" onclick="setPayer('יפתח')">יפתח שילם</button><button type="button" data-payer="אסיה" onclick="setPayer('אסיה')">אסיה שילמה</button><button type="button" data-payer="כל אחד" onclick="setPayer('כל אחד')">כל אחד את שלו</button></div></label><label>שלב<select name="phase"><option>טיול</option><option>הכנה</option></select></label><label>מדינה<input name="country" list="countries" required value="תאילנד"></label><label>קטגוריה<select name="category" id="categories"></select></label><div class="wide stay-fields" id="stayFields" hidden><label>לילה ראשון<input name="stayFrom" type="date"></label><label>מספר לילות<input name="nights" type="number" min="1" max="60" step="1" inputmode="numeric"></label><small class="wide">כשממלאים, העלות נספרת בתקציב השבועי לפי הלילות, גם אם שולמה מראש.</small></div><label>סטטוס<select name="status"><option>שולם</option><option>מתוכנן</option><option>בוטל</option></select></label><label class="wide check"><input type="checkbox" name="emergency" value="1"> <span>בלת״ם: הוצאה לא צפויה (מחלה, ביטול, תיקון). לא נספרת בתקציב השבועי ויורדת מכרית הבלת״מים</span></label><details class="wide advanced" id="advancedFields"><summary>שער המרה, חיוב סופי והערות</summary><div class="formgrid"><label>שער ₪ ליחידת מטבע<input name="rate" type="number" step="any" min="0.000001" required></label><label>חיוב סופי כולל בשקלים (רשות)<input name="finalILS" type="number" step="any" placeholder="גובר על השער"></label><label class="wide">הערות<textarea name="note" rows="2"></textarea></label></div></details><div class="wide notice" id="calc" aria-live="polite"></div></div><div class="actions"><button id="deleteBtn" type="button" class="secondary" onclick="deleteExpense()">מחיקה</button><button class="secondary" type="button" onclick="editor.close()">ביטול</button><button id="saveBtn">שמירת הוצאה</button></div></form></dialog><datalist id="countries"><option>תאילנד</option><option>יפן</option><option>ישראל</option><option>קמבודיה</option><option>הודו</option><option>אינדונזיה</option><option>אחר</option></datalist><dialog id="ratesDialog"><form id="ratesForm"><h2>שערי מטבע</h2><p class="muted">כמה שקלים שווה יחידה אחת. השער נשמר בכל הוצאה, כדי לשמור על ההיסטוריה.</p><div id="rateFields" class="formgrid"></div><label style="margin-top:18px;display:block"><input type="checkbox" name="revalue"> להחיל גם על הוצאות קיימות ללא חיוב סופי בשקלים</label><div class="actions"><button type="button" class="secondary" onclick="ratesDialog.close()">ביטול</button><button>שמירת שערים</button></div></form></dialog><dialog id="settleDialog"><form id="settleForm"><h2>רישום העברה ביניכם</h2><p class="muted">העברת כסף בין יפתח לאסיה מקטינה את החוב, ואינה נספרת כהוצאה.</p><div class="formgrid"><label class="wide">כיוון ההעברה<select name="from"><option value="אסיה">אסיה העבירה ליפתח</option><option value="יפתח">יפתח העביר לאסיה</option></select></label><label>סכום ב־₪<input name="amount" type="number" step="any" min="0.01" inputmode="decimal" required></label><label>תאריך<input name="date" type="date"></label></div><div class="actions"><button type="button" class="secondary" onclick="settleDialog.close()">ביטול</button><button>שמירת העברה</button></div></form></dialog><dialog id="filterDialog"><form method="dialog" onchange="render()"><h2>סינון הוצאות</h2><div class="formgrid"><label>שלב<select id="phaseFilter"><option value="">כל השלבים</option><option>טיול</option><option>הכנה</option></select></label><label>סטטוס<select id="statusFilter"><option value="">כל הסטטוסים</option><option>שולם</option><option>מתוכנן</option><option>בוטל</option></select></label><label>מדינה<select id="countryFilter"></select></label><label>קטגוריה<select id="categoryFilter"><option value="">כל הקטגוריות</option></select></label><label>מתאריך<input type="date" id="fromDate"></label><label>עד תאריך<input type="date" id="toDate"></label></div><div class="actions"><button type="button" class="secondary" onclick="clearFilters()">ניקוי</button><button value="ok" id="filterApply">הצגת התוצאות</button></div></form></dialog><dialog id="dataDialog"><h2>נתונים והגדרות</h2><p class="muted" id="dataInfo"></p><div class="menu-list"><button class="menu-item" onclick="dataDialog.close();exportData()"><b>גיבוי לקובץ</b><small>שומר עותק של כל ההוצאות</small></button><button class="menu-item local-only" onclick="dataDialog.close();$('importFile').click()"><b>שחזור מגיבוי</b><small>טוען הוצאות מקובץ גיבוי, במקום אלה שכאן</small></button><button class="menu-item" onclick="dataDialog.close();openRates()"><b>שערי מטבע</b><small id="ratesInfo"></small></button></div><div class="actions"><button class="secondary" onclick="dataDialog.close()">סגירה</button></div></dialog><dialog id="limitDialog"><form id="limitForm"><h2>תקציב שבועי</h2><p class="muted">כמה יפתח מתכנן להוציא בשבוע, מהחלק שלו בהוצאות ששולמו. "כל השאר" כולל כל קטגוריה שלא הוחרגה.</p><div class="formgrid"><label>לינה (₪)<input name="p_lodging" type="number" min="0" step="any" inputmode="decimal"></label><label>אוכל וקפה (₪)<input name="p_food" type="number" min="0" step="any" inputmode="decimal"></label><label>תחבורה (₪)<input name="p_transport" type="number" min="0" step="any" inputmode="decimal"></label><label>כל השאר (₪)<input name="p_rest" type="number" min="0" step="any" inputmode="decimal"></label><div class="wide limit-total" id="limitTotal"></div><label class="wide">השבוע מתחיל ביום<select name="weekStart"><option value="0">ראשון</option><option value="1">שני</option></select></label><label class="wide">כרית לבלת״מים (₪)<input name="cushion" type="number" min="0" step="any" inputmode="decimal"></label><label class="wide check"><input type="checkbox" name="rebalance"> <span>חריגה בקטגוריה מכוסה מקטגוריות שמקדימות את הקצב</span></label><label class="wide check"><input type="checkbox" name="rollover"> <span>חריגה יורדת מהשבועיים הבאים, וחצי מעודף עובר לשבוע הבא</span></label><fieldset class="wide cats"><legend>יפן · תקציב נפרד</legend><div class="stay-fields"><label>יום הנחיתה<input type="date" name="pauseFrom"></label><label>יום הטיסה מיפן<input type="date" name="pauseTo"></label><small>הימים האלה לא נספרים בתקציב השבועי. אפשר לעדכן כשהטיסות ייסגרו, או להשאיר ריק.</small></div></fieldset><fieldset class="wide cats"><legend>לא לספור בתקציב</legend><div class="cat-toggles" id="limitCats"></div><small>תשלומים חד־פעמיים כמו טיסות, ביטוח וציוד אינם חלק מההוצאה השוטפת.</small></fieldset></div><div class="actions"><button type="button" class="secondary" id="limitRemove" onclick="saveLimit(null)">הסרה</button><button type="button" class="secondary" onclick="fillLimitForm(RECOMMENDED_LIMIT)">המומלץ</button><button>שמירה</button></div></form></dialog><dialog id="alertDialog"><form method="dialog"><h2>שים לב לתקציב</h2><p id="alertText"></p><div class="actions"><button value="ok">הבנתי</button></div></form></dialog><dialog id="askDialog"><form method="dialog"><p id="askText"></p><div class="actions"><button value="no" class="secondary">ביטול</button><button value="yes" id="askYes">אישור</button></div></form></dialog><button class="floating-add" onclick="openExpense()"><span aria-hidden="true">＋</span> הוספת הוצאה</button><div id="toast" role="status"></div><script>
+</style><div class="top"><header><div class="brand"><span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5h14a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7.5Z"/><path d="M4 7.5l11-3.2a1.5 1.5 0 0 1 2 1.4v1.8"/><circle cx="16" cy="13.8" r="1.2" fill="currentColor"/></svg></span><div>המסע שלנו<small>יפתח ואסיה · 2026—2027</small></div></div><div class="head-side"><div id="sync">מתחבר…</div><button class="menu-btn" onclick="openData()" aria-label="נתונים והגדרות" title="נתונים והגדרות">⋯</button></div></header><div class="hero-wrap"><div class="hero"><small>פחות לחשב. יותר לטייל.</small><h1>כל המסע, בשקלים.</h1><p>התמונה המלאה של ההוצאות שלכם, בכל מקום בדרך.</p><div class="hero-actions"><button class="add-main" onclick="openExpense()">＋ הוצאה חדשה</button></div></div><div class="card big"><small>שולם עד עכשיו · החלק של יפתח</small><div class="value" id="total">—</div><div class="progress"><i id="progress"></i></div><div id="budgetText"></div><small>מתוך תקציב אישי של 50,000 ₪ · הכנות וטיול</small></div></div></div><main><div class="banner" id="banner" hidden><div><b id="bannerTitle"></b><small id="bannerText"></small></div><button type="button" id="bannerBtn"></button></div><section class="card week" id="week" aria-labelledby="weekLabel"><div class="week-head"><div><small id="weekLabel">תקציב שבועי</small><div class="week-range" id="weekRange"></div></div><div class="week-nav"><button type="button" class="icon-btn" id="weekPrev" onclick="moveWeek(-1)" aria-label="שבוע קודם">→</button><button type="button" class="icon-btn" id="weekNext" onclick="moveWeek(1)" aria-label="שבוע הבא">←</button><button type="button" class="icon-btn" onclick="openLimit()" aria-label="הגדרת התקציב השבועי"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg></button></div></div><div class="week-main"><div class="value" id="weekSpent">—</div><small id="weekOf"></small></div><small class="week-adjust" id="weekAdjust" hidden></small><div class="week-bar" id="weekBar" role="progressbar" aria-labelledby="weekLabel" aria-valuemin="0"><i id="weekFill"></i><span class="pace" id="weekPace" title="איפה כדאי להיות עד היום" hidden></span></div><div class="week-text"><b id="weekLeft"></b> <small id="weekSub"></small></div><div class="japan" id="japanBox" hidden><div class="part-label"><span>יפן · תקציב נפרד</span><b id="japanUsed"></b></div><div class="part-bar"><i id="japanFill"></i></div><small id="japanText"></small></div><div class="week-alert" id="weekAlert" role="status" hidden></div><button type="button" class="week-toggle" id="weekToggle" aria-expanded="false" aria-controls="weekMore" onclick="toggleWeek()"><span id="weekToggleText">פרטים</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><div class="week-more" id="weekMore" hidden><div class="week-parts" id="weekParts" hidden></div><p class="week-moves" id="weekMoves" hidden></p><p class="week-verdict" id="weekVerdict" hidden></p><div class="week-days"><div class="wd-bars" id="wdBars"></div><div class="wd-labels" id="wdLabels"></div></div><p class="week-running" id="weekRunning" hidden></p><p class="week-cushion" id="weekCushion" hidden></p></div><button type="button" class="week-cta" id="weekCta" onclick="openLimit()">הגדרת תקציב שבועי</button></section><div class="cards"><div class="card"><small>במהלך הטיול</small><div class="value" id="trip">—</div><small id="prep"></small></div><div class="card"><small>היום · החלק של יפתח</small><div class="value" id="today">—</div><small id="planned"></small></div><div class="card"><small>החודש · החלק של יפתח</small><div class="value" id="monthTotal">—</div><small id="monthLabel"></small></div></div><div class="balance" id="balance"><div><small>התחשבנות עם אסיה · כל ההוצאות ששולמו</small><div class="value" id="balanceValue">—</div><small id="balanceText"></small></div><div class="balance-actions"><button type="button" class="secondary" id="balanceDetails" onclick="showBalanceItems()">מה נכלל בחישוב?</button><button type="button" onclick="openSettle()">⇄ רישום העברה ביניכם</button></div></div><div class="quick" aria-label="הוספה מהירה"><small>מה מוסיפים היום?</small><button onclick="quickExpense('אוכל וקפה','ארוחה')">＋ אוכל</button><button onclick="quickExpense('תחבורה','נסיעת Grab')">＋ גראב</button><button onclick="quickExpense('לינה','לינה')">＋ לינה</button></div><div class="notice" id="notice"></div><div class="toolbar"><label class="searchbox"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="search" type="search" placeholder="חיפוש הוצאה" aria-label="חיפוש הוצאות" oninput="render()"></label><button class="filter-btn" id="filterBtn" onclick="openFilters()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>סינון<span id="filterCount" hidden></span></button><input type="file" id="importFile" accept=".json,application/json" hidden onchange="importData(this.files[0]);this.value=''"></div><div class="chips" id="chips"></div><div class="layout"><section class="panel"><div class="panel-head"><h2>יומן הוצאות</h2><small id="count"></small></div><div class="filter-summary"><span id="filteredTotal"></span><span>הסיכומים העליונים מציגים את כל ההוצאות</span></div><div class="table-wrap"><table class="rows"><thead><tr><th>הוצאה</th><th class="hideMobile">מדינה / שלב</th><th>החלק שלי ₪</th><th></th></tr></thead><tbody id="rows"></tbody></table></div></section><aside><section class="panel"><h2>לאן הכסף הולך?</h2><small>שולם · החלק של יפתח · לפי המסננים</small><div class="tabs"><button onclick="group='category';render()" class="secondary">קטגוריה</button><button onclick="group='country';render()" class="secondary">מדינה</button><button onclick="group='date';render()" class="secondary">יום</button><button onclick="group='month';render()" class="secondary">חודש</button></div><div class="bars" id="bars"></div></section><p class="muted">החזר נרשם בסכום שלילי. משיכת מזומן אינה הוצאה.</p></aside></div><div class="footer">הנתונים שמורים רק בטלפון הזה. מומלץ ללחוץ מדי פעם על "גיבוי לקובץ".</div></main><dialog id="editor"><form id="expenseForm"><h2 id="formTitle">הוצאה חדשה</h2><div class="formgrid"><label>סכום כולל לתשלום<input name="amount" type="number" step="any" inputmode="decimal" placeholder="שלילי להחזר"></label><label>מטבע<select name="currency" id="currencySelect"></select></label><label class="wide">תיאור<input name="description" required maxlength="200" list="descList" autocomplete="off" placeholder="למשל: ארוחת ערב, נסיעת Grab"></label><label>תאריך תשלום<input name="date" type="date"></label><label class="wide">חלוקה<select name="share" aria-label="חלוקת ההוצאה" hidden><option value="0.5">חצי־חצי · 50% לכל אחד</option><option value="1" selected>של יפתח · 100%</option><option value="0">של אסיה · 0% ליפתח</option></select><div class="split"><button type="button" data-share="1" onclick="setShare(1)">רק שלי</button><button type="button" data-share="0.5" onclick="setShare(.5)">חצי־חצי</button><button type="button" data-share="0" onclick="setShare(0)">רק אסיה</button></div></label><label class="wide">מי שילם?<select name="paidBy" aria-label="מי שילם" hidden><option>יפתח</option><option>אסיה</option><option>כל אחד</option></select><div class="split"><button type="button" data-payer="יפתח" onclick="setPayer('יפתח')">יפתח שילם</button><button type="button" data-payer="אסיה" onclick="setPayer('אסיה')">אסיה שילמה</button><button type="button" data-payer="כל אחד" onclick="setPayer('כל אחד')">כל אחד את שלו</button></div></label><label>שלב<select name="phase"><option>טיול</option><option>הכנה</option></select></label><label>מדינה<input name="country" list="countries" required value="תאילנד"></label><label>קטגוריה<select name="category" id="categories"></select></label><div class="wide stay-fields" id="stayFields" hidden><label>לילה ראשון<input name="stayFrom" type="date"></label><label>מספר לילות<input name="nights" type="number" min="1" max="60" step="1" inputmode="numeric"></label><small class="wide">כשממלאים, העלות נספרת בתקציב השבועי לפי הלילות, גם אם שולמה מראש.</small></div><label>סטטוס<select name="status"><option>שולם</option><option>מתוכנן</option><option>בוטל</option></select></label><label class="wide check"><input type="checkbox" name="emergency" value="1"> <span>בלת״ם: הוצאה לא צפויה (מחלה, ביטול, תיקון). לא נספרת בתקציב השבועי ויורדת מכרית הבלת״מים</span></label><details class="wide advanced" id="advancedFields"><summary>שער המרה, חיוב סופי והערות</summary><div class="formgrid"><label>שער ₪ ליחידת מטבע<input name="rate" type="number" step="any" min="0.000001" required></label><label>חיוב סופי כולל בשקלים (רשות)<input name="finalILS" type="number" step="any" placeholder="גובר על השער"></label><label class="wide">הערות<textarea name="note" rows="2"></textarea></label></div></details><div class="wide notice" id="calc" aria-live="polite"></div></div><div class="actions"><button id="deleteBtn" type="button" class="secondary" onclick="deleteExpense()">מחיקה</button><button class="secondary" type="button" onclick="editor.close()">ביטול</button><button id="saveBtn">שמירת הוצאה</button></div></form></dialog><datalist id="descList"></datalist><datalist id="countries"><option>תאילנד</option><option>הודו</option><option>פיליפינים</option><option>קמבודיה</option><option>יפן</option><option>ישראל</option><option>אחר</option></datalist><dialog id="ratesDialog"><form id="ratesForm"><h2>שערי מטבע</h2><p class="muted">כמה שקלים שווה יחידה אחת. השער נשמר בכל הוצאה, כדי לשמור על ההיסטוריה.</p><div id="rateFields" class="formgrid"></div><label style="margin-top:18px;display:block"><input type="checkbox" name="revalue"> להחיל גם על הוצאות קיימות ללא חיוב סופי בשקלים</label><div class="actions"><button type="button" class="secondary" onclick="ratesDialog.close()">ביטול</button><button>שמירת שערים</button></div></form></dialog><dialog id="settleDialog"><form id="settleForm"><h2>רישום העברה ביניכם</h2><p class="muted">העברת כסף בין יפתח לאסיה מקטינה את החוב, ואינה נספרת כהוצאה.</p><div class="formgrid"><label class="wide">כיוון ההעברה<select name="from"><option value="אסיה">אסיה העבירה ליפתח</option><option value="יפתח">יפתח העביר לאסיה</option></select></label><label>סכום ב־₪<input name="amount" type="number" step="any" min="0.01" inputmode="decimal" required></label><label>תאריך<input name="date" type="date"></label></div><div class="actions"><button type="button" class="secondary" onclick="settleDialog.close()">ביטול</button><button>שמירת העברה</button></div></form></dialog><dialog id="filterDialog"><form method="dialog" onchange="render()"><h2>סינון הוצאות</h2><div class="formgrid"><label>שלב<select id="phaseFilter"><option value="">כל השלבים</option><option>טיול</option><option>הכנה</option></select></label><label>סטטוס<select id="statusFilter"><option value="">כל הסטטוסים</option><option>שולם</option><option>מתוכנן</option><option>בוטל</option></select></label><label>מדינה<select id="countryFilter"></select></label><label>קטגוריה<select id="categoryFilter"><option value="">כל הקטגוריות</option></select></label><label>מתאריך<input type="date" id="fromDate"></label><label>עד תאריך<input type="date" id="toDate"></label></div><div class="actions"><button type="button" class="secondary" onclick="clearFilters()">ניקוי</button><button value="ok" id="filterApply">הצגת התוצאות</button></div></form></dialog><dialog id="dataDialog"><h2>נתונים והגדרות</h2><p class="muted" id="dataInfo"></p><div class="menu-list"><button class="menu-item" onclick="dataDialog.close();exportData()"><b>גיבוי לקובץ</b><small>שומר עותק של כל ההוצאות</small></button><button class="menu-item local-only" onclick="dataDialog.close();$('importFile').click()"><b>שחזור מגיבוי</b><small>טוען הוצאות מקובץ גיבוי, במקום אלה שכאן</small></button><button class="menu-item" onclick="dataDialog.close();openRates()"><b>שערי מטבע</b><small id="ratesInfo"></small></button></div><div class="actions"><button class="secondary" onclick="dataDialog.close()">סגירה</button></div></dialog><dialog id="limitDialog"><form id="limitForm"><h2>תקציב שבועי</h2><p class="muted">כמה יפתח מתכנן להוציא בשבוע, מהחלק שלו בהוצאות ששולמו. "כל השאר" כולל כל קטגוריה שלא הוחרגה.</p><div class="formgrid"><label>לינה (₪)<input name="p_lodging" type="number" min="0" step="any" inputmode="decimal"></label><label>אוכל וקפה (₪)<input name="p_food" type="number" min="0" step="any" inputmode="decimal"></label><label>תחבורה (₪)<input name="p_transport" type="number" min="0" step="any" inputmode="decimal"></label><label>כל השאר (₪)<input name="p_rest" type="number" min="0" step="any" inputmode="decimal"></label><div class="wide limit-total" id="limitTotal"></div><label class="wide">השבוע מתחיל ביום<select name="weekStart"><option value="0">ראשון</option><option value="1">שני</option></select></label><label class="wide">כרית לבלת״מים (₪)<input name="cushion" type="number" min="0" step="any" inputmode="decimal"></label><label class="wide check"><input type="checkbox" name="rebalance"> <span>חריגה בקטגוריה מכוסה מקטגוריות שמקדימות את הקצב</span></label><label class="wide check"><input type="checkbox" name="rollover"> <span>חריגה יורדת מהשבועיים הבאים, וחצי מעודף עובר לשבוע הבא</span></label><fieldset class="wide cats"><legend>יפן · תקציב נפרד</legend><div class="stay-fields"><label>יום הנחיתה<input type="date" name="pauseFrom"></label><label>יום הטיסה מיפן<input type="date" name="pauseTo"></label><label class="wide">תקציב ליפן (₪)<input type="number" name="pauseBudget" min="0" step="any" inputmode="decimal"></label><small>הימים האלה לא נספרים בתקציב השבועי. אפשר לעדכן כשהטיסות ייסגרו, או להשאיר ריק.</small></div></fieldset><fieldset class="wide cats"><legend>לא לספור בתקציב</legend><div class="cat-toggles" id="limitCats"></div><small>תשלומים חד־פעמיים כמו טיסות, ביטוח וציוד אינם חלק מההוצאה השוטפת.</small></fieldset></div><div class="actions"><button type="button" class="secondary" id="limitRemove" onclick="saveLimit(null)">הסרה</button><button type="button" class="secondary" onclick="fillLimitForm(RECOMMENDED_LIMIT)">המומלץ</button><button>שמירה</button></div></form></dialog><dialog id="alertDialog"><form method="dialog"><h2>שים לב לתקציב</h2><p id="alertText"></p><div class="actions"><button value="ok">הבנתי</button></div></form></dialog><dialog id="askDialog"><form method="dialog"><p id="askText"></p><div class="actions"><button value="no" class="secondary">ביטול</button><button value="yes" id="askYes">אישור</button></div></form></dialog><button class="floating-add" onclick="openExpense()"><span aria-hidden="true">＋</span> הוספת הוצאה</button><div id="toast" role="status"></div><script>
 const BUDGET = 50000;
 const SETTLE = 'התחשבנות';
 const CATEGORIES = ['אוכל וקפה', 'תחבורה', 'לינה', 'טיסות', 'ציוד וקניות', 'סנובורד', 'אחסון', 'ביטוח ובריאות', 'תקשורת', 'ויזות ומסמכים', 'אטרקציות', 'קנאביס', 'עמלות', 'אחר', SETTLE];
-const PENDING_KEY = 'trip-wallet:pending', CACHE_KEY = 'trip-wallet:cache', DB_KEY = 'trip-wallet:db', BACKUP_KEY = 'trip-wallet:last-backup';
+const PENDING_KEY = 'trip-wallet:pending', CACHE_KEY = 'trip-wallet:cache', DB_KEY = 'trip-wallet:db', BACKUP_KEY = 'trip-wallet:last-backup', RATES_AT_KEY = 'trip-wallet:rates-at';
 // "local" mode (the home-screen app): everything is stored on this device only, no server.
 const LOCAL = document.documentElement.dataset.mode === 'local';
 // "claude" mode: published as a page on claude.ai, data kept in the artifact's database (the owner's Claude account).
 const CLOUD = document.documentElement.dataset.mode === 'claude';
 const ID_OK = /^(?!\.\.?$)[A-Za-z0-9_\-.~:@+]{1,200}$/;
 
-let data = { expenses: [], rates: { ILS: 1, THB: .0931, USD: 3.118, JPY: .019822 } }, group = 'category', editing = null, online = null;
+// Shekels per unit. Fallbacks only: live rates replace them once a day when there is a connection.
+const DEFAULT_RATES = { ILS: 1, THB: .0931, USD: 3.118, JPY: .019822, INR: .0365, PHP: .0535, KHR: .00077 };
+const CURRENCY_LIST = [['THB', 'באט'], ['INR', 'רופי'], ['PHP', 'פסו'], ['JPY', 'ין'], ['USD', 'דולר'], ['KHR', 'ריל'], ['ILS', 'שקל']];
+const COUNTRY_CURRENCY = { 'תאילנד': 'THB', 'הודו': 'INR', 'פיליפינים': 'PHP', 'יפן': 'JPY', 'קמבודיה': 'USD', 'ישראל': 'ILS' };
+let data = { expenses: [], rates: { ...DEFAULT_RATES } }, group = 'category', editing = null, online = null;
+const rateOf = c => data.rates?.[c] ?? DEFAULT_RATES[c];
 const $ = id => document.getElementById(id), form = $('expenseForm');
 
 // ---------- helpers ----------
@@ -335,6 +345,7 @@ function sync() {
     applyRecommendation();
     fixKnownStays();
     markKnownEmergencies();
+    refreshRates();
   })();
 }
 
@@ -418,10 +429,7 @@ function render() {
   const notes = [];
   if ((LOCAL || CLOUD) && online && !data.expenses.length) notes.push('האפליקציה עדיין ריקה. כדי להעביר הוצאות מגיבוי: תפריט ⋯ למעלה ← "שחזור מגיבוי".');
   if (missing) notes.push(`לתשומת לבך: ${missing === 1 ? 'רישום אחד ללא סכום אינו נספר' : missing + ' רישומים ללא סכום אינם נספרים'} בסיכומים.`);
-  if (LOCAL && data.expenses.length) {
-    const last = readStore(BACKUP_KEY, null), days = last ? Math.floor((Date.now() - last) / 864e5) : null;
-    if (days === null || days >= 7) notes.push('הנתונים שמורים רק בטלפון הזה. ' + (days === null ? 'עוד לא נעשה גיבוי' : `הגיבוי האחרון לפני ${days} ימים`) + ' · כדאי לגבות: תפריט ⋯ למעלה ← "גיבוי לקובץ".');
-  }
+  renderBanner();
   $('notice').textContent = notes.join(' ');
 
   // balance with Asia
@@ -459,6 +467,26 @@ function render() {
   const entries = Object.entries(groups).sort((a, b) => group === 'date' || group === 'month' ? b[0].localeCompare(a[0]) : b[1] - a[1]);
   const max = Math.max(1, ...entries.map(e => Math.abs(e[1])));
   $('bars').innerHTML = entries.map(([k, v]) => `<div><div class="barlabel"><span>${esc(k)}</span><b>${money(v)}</b></div><div class="bar"><i style="width:${Math.abs(v) / max * 100}%${group === 'category' ? ';--c:' + catColor(k) : ''}"></i></div></div>`).join('') || '<p class="muted">אין תשלומים להצגה</p>';
+}
+
+// ---------- banner: weekly backup on the phone, pointer to the main app on claude.ai ----------
+const APP_URL = 'https://iftachgrossman-sudo.github.io/Trip-wallet-app/';
+function renderBanner() {
+  const b = $('banner');
+  if (LOCAL && data.expenses.length) {
+    const last = readStore(BACKUP_KEY, null), days = last ? Math.floor((Date.now() - last) / 864e5) : null;
+    b.hidden = !(days === null || days >= 7);
+    $('bannerTitle').textContent = 'גיבוי שבועי';
+    $('bannerText').textContent = 'ההוצאות שמורות רק בטלפון הזה. ' + (days === null ? 'עוד לא נשמר גיבוי.' : `הגיבוי האחרון לפני ${days} ימים.`) + ' שמור קובץ ב־Files או שלח לעצמך בוואטסאפ.';
+    $('bannerBtn').textContent = 'שמירת גיבוי';
+    $('bannerBtn').onclick = exportData;
+  } else if (CLOUD) {
+    b.hidden = false;
+    $('bannerTitle').textContent = 'האפליקציה הראשית היא זו שבמסך הבית';
+    $('bannerText').textContent = 'כדי שלא ייווצרו שתי גרסאות של ההוצאות, כדאי לרשום רק שם. כתובת: ' + APP_URL;
+    $('bannerBtn').textContent = 'העתקת הכתובת';
+    $('bannerBtn').onclick = async () => { try { await navigator.clipboard.writeText(APP_URL); toast('הכתובת הועתקה'); } catch { toast(APP_URL); } };
+  } else b.hidden = true;
 }
 
 // ---------- weekly limit ----------
@@ -606,6 +634,34 @@ function verdict(w) {
   return out.join(' ');
 }
 
+// The card shows the essentials; the breakdown, pace, days and totals sit behind "פרטים".
+const WEEK_OPEN_KEY = 'trip-wallet:week-open';
+let weekOpen = readStore(WEEK_OPEN_KEY, false);
+function toggleWeek() { weekOpen = !weekOpen; writeStore(WEEK_OPEN_KEY, weekOpen); render(); }
+
+// Japan has its own budget: everything counted on Japan days, against pauses[0].budget.
+const JAPAN_BUDGET = 8400;
+const dayCount = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
+function japanStatus() {
+  const P = (data.limit?.pauses || [])[0];
+  if (!P) return null;
+  const exclude = data.limit.exclude || [];
+  const used = addUp(data.expenses.filter(e => spent(e) && !e.emergency && !exclude.includes(e.category)).flatMap(allocations).filter(a => a.date >= P.from && a.date < P.to));
+  const t = today(), budget = P.budget ?? JAPAN_BUDGET, total = dayCount(P.from, P.to);
+  const left = t < P.from ? total : t >= P.to ? 0 : dayCount(t, P.to);
+  return { P, used, budget, total, left };
+}
+function renderJapan(show) {
+  const j = japanStatus();
+  $('japanBox').hidden = !(show && j);
+  if (!show || !j) return;
+  const st = ['', 'warn', 'over'][level(j.used, j.budget)];
+  $('japanBox').className = 'japan ' + st;
+  $('japanUsed').innerHTML = `${money(j.used)} <small>/ ${money(j.budget)}</small>`;
+  $('japanFill').style.width = Math.min(100, j.budget ? j.used / j.budget * 100 : 0) + '%';
+  $('japanText').textContent = `${shortDate(j.P.from)}–${shortDate(j.P.to)} · ` + (j.left ? `נשארו ${money(Math.max(0, j.budget - j.used))} · ${money(Math.max(0, j.budget - j.used) / j.left)} ליום ל־${j.left} הימים שנותרו` : (j.used > j.budget ? `חריגה של ${money(j.used - j.budget)}` : `הסתיים בתוך התקציב`));
+}
+
 function moveWeek(step) { weekOffset = Math.min(0, weekOffset + step); render(); }
 function showDay(date) { $('fromDate').value = date; $('toDate').value = date; render(); $('chips').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
 
@@ -639,6 +695,8 @@ function renderWeek() {
   $('weekCushion').textContent = `כרית לבלת״מים: נוצלו ${money(cushionUsed)} מתוך ${money(cushionAll)}` + (P?.cushion > .5 ? ` (כולל ${money(P.cushion)} מעודפים)` : '')
     + ` · נשארו ${money(Math.max(0, cushionAll - cushionUsed))}`;
 
+  renderJapan(!!(L && wk && wk.active < 7));
+
   // a week spent entirely in Japan has its own budget
   if (L && wk && !wk.active) {
     const pause = (data.limit.pauses || [])[0];
@@ -646,6 +704,8 @@ function renderWeek() {
     ['weekBar', 'weekParts', 'weekAlert', 'weekVerdict'].forEach(id => $(id).hidden = true);
     $('weekLeft').textContent = ''; $('weekSub').textContent = '';
     $('week').className = 'card week';
+    $('weekMore').hidden = !weekOpen;
+    $('weekToggleText').textContent = weekOpen ? 'פחות פרטים' : 'פרטים';
     renderDays(w, null);
     return;
   }
@@ -688,6 +748,11 @@ function renderWeek() {
 
   $('weekVerdict').textContent = verdict(w);
   $('weekVerdict').hidden = !L;
+  const head = L && w.count ? $('weekVerdict').textContent.split(':')[0] : '';
+  $('weekToggleText').textContent = weekOpen ? 'פחות פרטים' : 'פרטים' + (head && head.length < 20 ? ' · ' + head : '') + (w.moves.length ? ' · יש כיסוי בין קטגוריות' : '');
+  $('weekMore').hidden = !weekOpen;
+  $('weekToggle').setAttribute('aria-expanded', weekOpen);
+  $('weekToggle').classList.toggle('open', weekOpen);
 
   renderDays(w, L);
 }
@@ -741,6 +806,7 @@ function fillLimitForm(L) {
   const japan = (L.pauses || [])[0];
   f.elements.pauseFrom.value = japan?.from || '';
   f.elements.pauseTo.value = japan?.to || '';
+  f.elements.pauseBudget.value = japan?.budget ?? JAPAN_BUDGET;
   f.elements.weekStart.value = String(L.weekStart ?? 0);
   limitTotal();
 }
@@ -758,7 +824,7 @@ $('limitForm').onsubmit = ev => {
   const keep = data.limit || RECOMMENDED_LIMIT, from = f.get('pauseFrom'), to = f.get('pauseTo');
   if ((from || to) && !(from && to && from < to)) { toast('יש לבחור יום נחיתה ויום טיסה מיפן, שבא אחריו'); return; }
   saveLimit({ amount, weekStart: Number(f.get('weekStart')), parts, exclude: f.getAll('exclude'), rollover: f.has('rollover'), rebalance: f.has('rebalance'),
-    since: keep.since || isoDate(weekDays(0).days[0]), pauses: from ? [{ name: 'יפן', from, to }] : [], cushion: Math.max(0, Number(f.get('cushion')) || 0), source: 'user' });
+    since: keep.since || isoDate(weekDays(0).days[0]), pauses: from ? [{ name: 'יפן', from, to, budget: Math.max(0, Number(f.get('pauseBudget')) || 0) }] : [], cushion: Math.max(0, Number(f.get('cushion')) || 0), source: 'user' });
 };
 async function saveLimit(limit, quiet) {
   try {
@@ -814,7 +880,8 @@ function openData() {
   const last = readStore(BACKUP_KEY, null);
   $('dataInfo').textContent = LOCAL ? 'ההוצאות שמורות רק בטלפון הזה. ' + (last ? 'גיבוי אחרון: ' + new Date(last).toLocaleDateString('he-IL') + '.' : 'עוד לא נעשה גיבוי.')
     : CLOUD ? 'ההוצאות שמורות בחשבון Claude שלך.' : 'ההוצאות שמורות בשרת.';
-  $('ratesInfo').textContent = 'בשקלים: ' + ['THB', 'USD', 'JPY'].map(c => `${c} ${data.rates[c]}`).join(' · ');
+  const asOf = readStore(RATES_AT_KEY, null);
+  $('ratesInfo').textContent = (asOf ? 'עודכנו אוטומטית ב־' + new Date(asOf).toLocaleDateString('he-IL') + ' · ' : '') + CURRENCY_LIST.filter(([c]) => c !== 'ILS').map(([c]) => `${c} ${+rateOf(c).toPrecision(3)}`).join(' · ');
   $('dataDialog').showModal();
   document.activeElement?.blur(); // don't show the first option as selected
 }
@@ -830,13 +897,15 @@ function setPayer(p) { form.elements.paidBy.value = p; calc(); }
 function openExpense(id) {
   editing = id || null;
   form.reset();
-  const e = id ? data.expenses.find(x => x.id === id) : { date: today(), currency: 'THB', rate: data.rates.THB, share: 1, paidBy: 'יפתח', phase: 'טיול', country: 'תאילנד', category: 'אוכל וקפה', status: 'שולם' };
+  const country = currentCountry(), currency = COUNTRY_CURRENCY[country] || 'THB';
+  const e = id ? data.expenses.find(x => x.id === id) : { date: today(), currency, rate: rateOf(currency), share: 1, paidBy: 'יפתח', phase: 'טיול', country, category: 'אוכל וקפה', status: 'שולם' };
   Object.entries(e).forEach(([k, v]) => { if (form.elements[k] && k !== 'emergency') form.elements[k].value = v ?? ''; });
   form.elements.emergency.checked = !!e.emergency;
   form.elements.paidBy.value = payer(e);
   $('formTitle').textContent = id ? 'עריכת הוצאה' : 'הוצאה חדשה';
   $('deleteBtn').hidden = !id;
   $('advancedFields').open = !!id;
+  fillSuggestions();
   $('editor').showModal();
   calc();
   form.elements[id ? 'description' : 'amount'].focus();
@@ -853,7 +922,38 @@ function calc() {
     + (nights > 0 ? ' · ' + money(value(e) / nights) + ' ללילה' : '');
 }
 form.oninput = calc;
-form.elements.currency.onchange = () => { form.elements.rate.value = data.rates[form.elements.currency.value]; calc(); };
+$('currencySelect').innerHTML = CURRENCY_LIST.map(([c, n]) => `<option value="${c}">${c} · ${n}</option>`).join('');
+form.elements.currency.onchange = () => { form.elements.rate.value = rateOf(form.elements.currency.value); calc(); };
+// Picking a country picks its currency.
+form.elements.country.onchange = () => {
+  const c = COUNTRY_CURRENCY[form.elements.country.value.trim()];
+  if (c && c !== form.elements.currency.value) { form.elements.currency.value = c; form.elements.rate.value = rateOf(c); calc(); }
+};
+// Descriptions used before, newest first; picking one fills category, split and payer as last time.
+function lastUse(desc) {
+  return data.expenses.filter(e => e.description === desc && !isSettle(e)).sort((a, b) => (b.date || '').localeCompare(a.date || ''))[0];
+}
+function fillSuggestions() {
+  const seen = new Set(), list = [];
+  [...data.expenses].filter(e => !isSettle(e)).sort((a, b) => (b.date || '').localeCompare(a.date || '')).forEach(e => { if (!seen.has(e.description)) { seen.add(e.description); list.push(e.description); } });
+  $('descList').innerHTML = list.slice(0, 40).map(d => `<option value="${esc(d)}">`).join('');
+}
+form.elements.description.onchange = () => {
+  if (editing) return;
+  const prev = lastUse(form.elements.description.value.trim());
+  if (!prev) return;
+  form.elements.category.value = prev.category;
+  form.elements.share.value = String(prev.share);
+  form.elements.paidBy.value = payer(prev);
+  calc();
+};
+
+// Where we are now: Japan during its dates, otherwise the country of the latest trip expense.
+function currentCountry() {
+  if (inPause(data.limit, today())) return 'יפן';
+  const last = data.expenses.filter(e => e.phase === 'טיול' && e.date && e.date <= today() && e.country && e.country !== 'אחר').sort((a, b) => b.date.localeCompare(a.date))[0];
+  return last?.country || 'תאילנד';
+}
 
 form.onsubmit = async ev => {
   ev.preventDefault();
@@ -905,14 +1005,34 @@ $('settleForm').onsubmit = async ev => {
   toast((await enqueue(e)) ? 'ההעברה נרשמה' : 'נשמר במכשיר · יסונכרן כשיחזור החיבור');
 };
 
-// ---------- exchange rates (need a connection) ----------
+// ---------- exchange rates ----------
+// Once a day, with a connection, fetch today's rates. Saved expenses keep the rate they were entered with.
+let ratesTried = false;
+async function refreshRates() {
+  if (ratesTried || CLOUD || online !== true || !navigator.onLine) return; // claude.ai pages cannot reach other sites
+  const last = readStore(RATES_AT_KEY, 0);
+  if (Date.now() - last < 12 * 3600e3) return;
+  ratesTried = true;
+  try {
+    const r = await (await fetch('https://open.er-api.com/v6/latest/ILS', { cache: 'no-store' })).json();
+    if (r.result !== 'success' || !r.rates) return;
+    const rates = { ILS: 1 };
+    for (const [c] of CURRENCY_LIST) if (c !== 'ILS' && r.rates[c] > 0) rates[c] = +(1 / r.rates[c]).toPrecision(5);
+    if (!['THB', 'USD', 'JPY'].every(c => rates[c])) return;
+    await api('rates', { rates: { ...data.rates, ...rates }, revalue: false });
+    writeStore(RATES_AT_KEY, Date.now());
+    await sync();
+  } catch {}
+}
+
+// ---------- exchange rates (by hand) ----------
 function openRates() {
-  $('rateFields').innerHTML = ['THB', 'USD', 'JPY'].map(c => `<label>${c} → ₪<input required type="number" min="0.000001" step="any" name="${c}" value="${data.rates[c]}"></label>`).join('');
+  $('rateFields').innerHTML = CURRENCY_LIST.filter(([c]) => c !== 'ILS').map(([c, n]) => `<label>${c} · ${n} → ₪<input required type="number" min="0.0000001" step="any" name="${c}" value="${rateOf(c)}"></label>`).join('');
   $('ratesDialog').showModal();
 }
 $('ratesForm').onsubmit = async ev => {
   ev.preventDefault();
-  const f = new FormData(ev.target), rates = { ILS: 1, THB: Number(f.get('THB')), USD: Number(f.get('USD')), JPY: Number(f.get('JPY')) };
+  const f = new FormData(ev.target), rates = { ILS: 1, ...Object.fromEntries(CURRENCY_LIST.filter(([c]) => c !== 'ILS').map(([c]) => [c, Number(f.get(c))])) };
   try {
     await api('rates', { rates, revalue: f.has('revalue') });
     await sync();
