@@ -1,4 +1,4 @@
-<!doctype html><html lang="he" dir="rtl" data-mode="local"><meta charset="utf-8"><meta name="app-build" content="d0326d9cf7ca"><meta name="viewport" content="width=device-width,initial-scale=1"><title>המסע שלנו | הוצאות הטיול</title><meta name="theme-color" content="#191b45"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="המסע שלנו"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"><style>
+<!doctype html><html lang="he" dir="rtl" data-mode="local"><meta charset="utf-8"><meta name="app-build" content="bf83c7e1580c"><meta name="viewport" content="width=device-width,initial-scale=1"><title>המסע שלנו | הוצאות הטיול</title><meta name="theme-color" content="#191b45"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="המסע שלנו"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap"><style>
 /* Night-market band on top, calm cards below. Indigo + mango; jade for "owed to you". */
 :root{--font:"Rubik",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--bg:#f3f4f9;--surface:#fff;--surface-2:#eff0f7;--ink:#171a35;--muted:#6a6f90;--line:#e3e5ef;--brand:#3d35a8;--brand-ink:#fff;--accent:#ffb547;--accent-ink:#2b1d00;--good:#0c9a72;--bad:#d4475d;--soft:#ecebfd;--soft-ink:#3d35a8;--warn-bg:#fff4dc;--warn-ink:#6f4b0c;--band-1:#191b45;--band-2:#4a39ad;--on-band:#fff;--on-band-muted:#cdcaf5;--glass:#ffffff17;--glass-line:#ffffff2b;--shadow:0 1px 2px #1a1d4012,0 10px 28px #1a1d4014;--radius:22px}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d0f21;--surface:#171a34;--surface-2:#20244a;--ink:#eceeff;--muted:#9fa4c8;--line:#2a2e57;--brand:#8f85ff;--brand-ink:#0d0f21;--soft:#252957;--soft-ink:#cfcaff;--warn-bg:#352a12;--warn-ink:#ffd690;--band-1:#111231;--band-2:#2e2484;--shadow:0 1px 2px #0007,0 10px 28px #0006;--good:#3fd3a3;--bad:#ff7d90;color-scheme:dark}}
@@ -461,9 +461,10 @@ const PARTS = [
   { key: 'transport', name: 'תחבורה', cats: ['תחבורה'], tip: 'כדאי לאחד נסיעות ולהעדיף BTS, MRT או הליכה על פני Grab קצרים' },
   { key: 'rest', name: 'כל השאר', cats: null, tip: 'כדאי לקבוע מראש סכום יומי לבילויים ולקנאביס' },
 ];
-// Chosen for a couple travelling in Thailand: about ₪200 a day for Iftach's share, one-off payments left out.
-const RECOMMENDED_LIMIT = { amount: 1400, weekStart: 0, parts: { lodging: 420, food: 490, transport: 210, rest: 280 },
-  exclude: ['טיסות', 'ביטוח ובריאות', 'ויזות ומסמכים', 'אחסון', 'ציוד וקניות', 'סנובורד', 'תקשורת'], source: 'recommended-1' };
+// About ₪170 a day for Iftach's share in South-East Asia, one-off payments left out. Kept low so that
+// roughly ₪25,600 stays aside for Japan in ski season, flights, insurance and an emergency cushion.
+const RECOMMENDED_LIMIT = { amount: 1200, weekStart: 0, parts: { lodging: 400, food: 420, transport: 160, rest: 220 },
+  exclude: ['טיסות', 'ביטוח ובריאות', 'ויזות ומסמכים', 'אחסון', 'ציוד וקניות', 'סנובורד', 'תקשורת'], source: 'recommended-2' };
 
 let weekOffset = 0;
 const isoDate = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -637,12 +638,14 @@ function fixKnownStays() {
   if (hotel) enqueue({ ...hotel, stayFrom: '2026-11-01', nights: 2 });
 }
 
-// Apply the recommended budget once, unless a budget was set by hand in this version.
+// Apply the current recommendation once: when there is no budget, or the budget is an older recommendation.
+// A budget saved by hand (source 'user') is never replaced.
 let recommendTried = false;
 async function applyRecommendation() {
-  if (recommendTried || online !== true || data.limit?.source) return;
+  const src = data.limit?.source;
+  if (recommendTried || online !== true || src === 'user' || src === RECOMMENDED_LIMIT.source) return;
   recommendTried = true;
-  if (await saveLimit(RECOMMENDED_LIMIT, true)) toast('קבעתי תקציב שבועי מומלץ: ₪1,400. אפשר לשנות בכל רגע');
+  if (await saveLimit(RECOMMENDED_LIMIT, true)) toast(`התקציב השבועי עודכן ל־${money(RECOMMENDED_LIMIT.amount)}, כדי לשמור כסף ליפן. אפשר לשנות בכל רגע`);
 }
 
 // ---------- expense form ----------
